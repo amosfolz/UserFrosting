@@ -165,11 +165,12 @@ class LocaleFixKeysCommand extends LocaleMissingKeysCommand
         $repository = new Repository();
         $repository->mergeItems(null, $base);
 
-        // If $alt is something other than string and we try to merge it in, $repository will become null.
+        // If $alt is something other than array and we try to merge it in, $repository will become null.
         if (is_array($alt)) {
             $repository->mergeItems(null, $alt);
         }
 
+        // Hack to retain original translation value when we need to add '@TRANSLATION' subkey.
         foreach ($missing as $key => $value) {
             if (!$repository->has($key)) {
                 if (strpos($key, '@TRANSLATION') !== false) {
