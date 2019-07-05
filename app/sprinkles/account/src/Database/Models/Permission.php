@@ -83,8 +83,23 @@ class Permission extends Model
     {
         return $query->join('permission_roles', function ($join) use ($roleId) {
             $join->on('permission_roles.permission_id', 'permissions.id')
-                 ->where('role_id', $roleId);
+->where('permissions.conditions', 'always()')
+                 ->groupBy('permissions.conditions');
         });
+    }
+
+    public function scopeJoinVehiculo($query)
+    {
+        return $query->groupBy('cuatro_semanas.vehiculo_id')
+            ->select(
+                'cuatro_semanas.vehiculo_id',
+                'cuatro_semanas.id AS id_servicio',
+                'vehiculos.vin',
+                'modelos.modelo'
+            )->where('cuatro_semanas.sw_delete', 0)
+            ->leftJoin('vehiculos', 'cuatro_semanas.vehiculo_id', '=', 'vehiculos.id')
+            ->leftJoin('modelos', 'vehiculos.modelo_id', '=', 'modelos.id')
+            ->leftJoin('servicios', 'cuatro_semanas.servicio_id', '=', 'servicios.id');
     }
 
     /**
