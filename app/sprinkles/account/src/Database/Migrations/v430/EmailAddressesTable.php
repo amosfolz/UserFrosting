@@ -44,6 +44,7 @@ class EmailAddressesTable extends Migration
                 $table->string('email', 254);
                 $table->boolean('flag_email_verified')->default(0)->comment('Set to 1 if the user has verified this email address, 0 otherwise.');
                 $table->integer('user_id')->unsigned()->comment('The id of the user.');
+                $table->timestamps();
 
                 $table->engine = 'InnoDB';
                 $table->collation = 'utf8_unicode_ci';
