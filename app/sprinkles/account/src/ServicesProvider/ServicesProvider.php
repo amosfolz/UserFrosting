@@ -71,6 +71,7 @@ class ServicesProvider
             $classMapper->setClassMapping('password_reset', 'UserFrosting\Sprinkle\Account\Database\Models\PasswordReset');
             $classMapper->setClassMapping('verification', 'UserFrosting\Sprinkle\Account\Database\Models\Verification');
             $classMapper->setClassMapping('persistence', 'UserFrosting\Sprinkle\Account\Database\Models\Persistence');
+            $classMapper->setClassMapping('email_address', 'UserFrosting\Sprinkle\Account\Database\Models\EmailAddress');
 
             return $classMapper;
         });
