@@ -19,11 +19,9 @@ use UserFrosting\Sprinkle\Core\Database\Models\Model;
  *
  * @author Amos Folz
  *
+ * @property string email
+ * @property bool flag_email_verified
  * @property int user_id
- * @property hash token
- * @property bool completed
- * @property datetime expires_at
- * @property datetime completed_at
  */
 class EmailAddress extends Model
 {
@@ -42,31 +40,6 @@ class EmailAddress extends Model
      * @var bool Enable timestamps for Verifications.
      */
     public $timestamps = true;
-
-    /**
-     * @var string Stores the raw (unhashed) token when created, so that it can be emailed out to the user.  NOT persisted.
-     */
-    protected $token;
-
-    /**
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
-     * @param string $value
-     *
-     * @return self
-     */
-    public function setToken($value)
-    {
-        $this->token = $value;
-
-        return $this;
-    }
 
     /**
      * Get the user associated with this verification request.

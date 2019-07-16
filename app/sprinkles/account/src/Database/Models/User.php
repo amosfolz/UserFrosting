@@ -217,6 +217,19 @@ class User extends Model implements UserInterface
     }
 
     /**
+     * Get all email address for this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function emailAddresses()
+    {
+        /** @var \UserFrosting\Sprinkle\Core\Util\ClassMapper $classMapper */
+        $classMapper = static::$ci->classMapper;
+
+        return $this->hasMany($classMapper->getClassMapping('email_address'), 'user_id');
+    }
+
+    /**
      * Determines whether a user exists, including checking soft-deleted records.
      *
      * @deprecated since 4.1.7 This method conflicts with and overrides the Builder::exists() method.  Use Model::findUnique instead.
