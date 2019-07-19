@@ -1,0 +1,18 @@
+
+
+{% block table %}
+
+                   <table class="table table-bordered">
+                       <tr>
+                           <th>{{translate('EMAIL')}}</th>
+                           <th>{{translate("EMAIL.TYPE")}}</th>
+                       </tr>
+                       {% for email in emails %}
+                           <tr>
+                               <td>{{email.email}}</td>
+                               <td>{{email.type}}</td>
+                           </tr>
+                       {% endfor %}
+                   </table>
+
+{% endblock %}

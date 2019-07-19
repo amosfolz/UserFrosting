@@ -39,7 +39,7 @@ class EmailAddressesTable extends Migration
     public function up()
     {
         if ($this->schema->hasTable('users')) {
-            $this->schema->table('email_addresses', function (Blueprint $table) {
+            $this->schema->create('email_addresses', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('email', 254);
                 $table->boolean('flag_email_verified')->default(0)->comment('Set to 1 if the user has verified this email address, 0 otherwise.');
